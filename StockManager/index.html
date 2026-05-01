@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-mark">SM</span>
+            <div>
+                <h1>Stock Manager</h1>
+                <p>Stok Yönetim Paneli</p>
+            </div>
+        </div>
+
+        <nav class="menu" aria-label="Ana menü">
+            <a class="menu-item active" href="#products" data-view="products">Ürünler</a>
+            <a class="menu-item" href="#add-product" data-view="add-product">Ürün Ekle</a>
+            <a class="menu-item" href="#summary" data-view="summary">Özet</a>
+        </nav>
+    </aside>
+
+    <main class="dashboard">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Mağaza paneli</p>
+                <h2 id="pageTitle">Ürünler</h2>
+            </div>
+            <button id="saveButton" class="primary-button" type="button">Kaydet</button>
+        </header>
+
+        <section id="summary" class="stats-grid page-section" data-view-panel="summary" aria-label="Stok özeti">
+            <article class="stat-card">
+                <span>Toplam Ürün</span>
+                <strong id="totalProducts">0</strong>
+            </article>
+            <article class="stat-card">
+                <span>Toplam Stok</span>
+                <strong id="totalStock">0</strong>
+            </article>
+            <article class="stat-card">
+                <span>Stok Değeri</span>
+                <strong id="stockValue">₺0,00</strong>
+            </article>
+            <article class="stat-card balance-card">
+                <span>Kazanılan Para</span>
+                <strong id="cashBalance">₺0,00</strong>
+            </article>
+
+            <article class="stat-card sales-card">
+                <div class="sales-card-header">
+                    <span>Satış Özeti</span>
+                    <strong id="totalSalesCount">0 adet</strong>
+                </div>
+                <ul id="salesSummary" class="sales-summary"></ul>
+                <p id="salesEmptyState" class="sales-empty">Henüz satış yapılmadı.</p>
+            </article>
+        </section>
+
+        <section class="content-grid">
+            <form id="productForm" class="panel form-panel page-section" data-view-panel="add-product">
+                <div class="panel-header" id="add-product">
+                    <div>
+                        <p class="eyebrow">Yeni kayıt</p>
+                        <h3>Ürün Ekle</h3>
+                    </div>
+                </div>
+
+                <label for="productName">Ürün Adı</label>
+                <input id="productName" type="text" placeholder="Örn. Kablosuz Mouse" required>
+
+                <label for="productPrice">Fiyat</label>
+                <input id="productPrice" type="number" min="0" step="0.01" placeholder="0.00" required>
+
+                <label for="productStock">Stok Miktarı</label>
+                <input id="productStock" type="number" min="0" step="1" placeholder="0" required>
+
+                <button class="primary-button full-width" type="submit">Ürün Ekle</button>
+                <p id="message" class="message" role="status" aria-live="polite"></p>
+            </form>
+
+            <section id="products" class="panel table-panel page-section active-section" data-view-panel="products">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Canlı liste</p>
+                        <h3>Ürünler</h3>
+                    </div>
+                    <span id="lastSaved" class="last-saved">Henüz kaydedilmedi</span>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ürün Adı</th>
+                                <th>Fiyat</th>
+                                <th>Stok</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody"></tbody>
+                    </table>
+                    <div id="emptyState" class="empty-state">
+                        Ürün listesi boş. İlk ürünü ekleyerek başlayın.
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
